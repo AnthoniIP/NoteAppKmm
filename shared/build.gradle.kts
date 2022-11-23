@@ -59,11 +59,18 @@ kotlin {
     }
 }
 
+sqldelight {
+    database("NoteDatabase"){
+        packageName = "com.ipsoft.noteappkmm.database"
+        sourceFolders = listOf("  sqldelight")
+    }
+}
+
 android {
     namespace = "com.ipsoft.noteappkmm"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 24
-        targetSdk = 32
+        targetSdk = 33
     }
 }
