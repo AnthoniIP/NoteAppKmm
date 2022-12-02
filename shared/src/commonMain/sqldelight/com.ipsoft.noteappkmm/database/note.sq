@@ -6,8 +6,8 @@
     createdDate INTEGER NOT NULL
  );
 
- getAllNotes: SELECT * FROM noteEntity ORDER BY createdDate DESC;
- getNoteById: SELECT * FROM noteEntity WHERE id = ?;
+getAllNotes: SELECT * FROM noteEntity ORDER BY createdDate DESC;
+getNoteById: SELECT * FROM noteEntity WHERE id = ?;
 
 insertNote:
  INSERT OR REPLACE
@@ -19,5 +19,5 @@ insertNote:
         VALUES (?, ?, ?, ?);
 
 
-deleteNotebyId:
+deleteNoteById:
 DELETE FROM noteEntity WHERE id = ?;

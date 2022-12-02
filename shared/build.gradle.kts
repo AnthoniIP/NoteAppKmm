@@ -62,7 +62,7 @@ kotlin {
 sqldelight {
     database("NoteDatabase"){
         packageName = "com.ipsoft.noteappkmm.database"
-        sourceFolders = listOf("  sqldelight")
+        sourceFolders = listOf("sqldelight")
     }
 }
 
