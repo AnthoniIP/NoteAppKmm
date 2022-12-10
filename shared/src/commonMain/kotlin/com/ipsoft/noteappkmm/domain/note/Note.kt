@@ -8,7 +8,7 @@ import com.ipsoft.noteappkmm.presentation.violetHex
 import kotlinx.datetime.LocalDateTime
 
 data class Note(
-    val id: Long?,
+    val id: Long? = null,
     val title: String,
     val content: String,
     val colorHex: Long,

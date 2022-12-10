@@ -3,12 +3,7 @@ package com.ipsoft.noteappkmm.android.note_list
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -41,27 +36,39 @@ fun NoteItem(
         modifier = modifier
             .clip(RoundedCornerShape(5.dp))
             .background(backgroundColor)
-            .clickable { onNoteClick() }
+            .clickable { onNoteClick() },
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp, 16.dp, 16.dp, 0.dp),
         ) {
             Text(
                 text = note.title,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
+                fontSize = 20.sp,
             )
             Icon(
                 imageVector = Icons.Default.Close,
                 contentDescription = "Delete note",
-                modifier = Modifier.clickable(MutableInteractionSource(), null) { onDeleteClick() }
+                modifier = Modifier.clickable(MutableInteractionSource(), null) { onDeleteClick() },
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = note.content, fontWeight = FontWeight.Light)
+        Text(
+            text = note.content,
+            fontWeight = FontWeight.Light,
+            modifier = Modifier.padding(16.dp, 0.dp, 16.dp, 0.dp),
+        )
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = formattedDate, color = Color.DarkGray, modifier = Modifier.align(Alignment.End))
+        Text(
+            text = formattedDate,
+            color = Color.DarkGray,
+            modifier = Modifier
+                .align(Alignment.End)
+                .padding(0.dp, 0.dp, 16.dp, 16.dp),
+        )
     }
 }
