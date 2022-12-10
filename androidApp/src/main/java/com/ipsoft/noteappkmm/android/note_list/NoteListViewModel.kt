@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.ipsoft.noteappkmm.data.note.SearchNotes
 import com.ipsoft.noteappkmm.domain.note.Note
 import com.ipsoft.noteappkmm.domain.note.NoteDataSource
-import com.ipsoft.noteappkmm.domain.time.DateTimeUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -22,9 +21,9 @@ class NoteListViewModel @Inject constructor(
 
     private val searchNotes = SearchNotes()
 
-    private val notes = savedStateHandle.getStateFlow("notes", emptyList<Note>())
-    private val searchText = savedStateHandle.getStateFlow("searchText", "")
-    private val isSearchActive = savedStateHandle.getStateFlow("isSearchActive", false)
+    private val notes = savedStateHandle.getStateFlow(NOTES, emptyList<Note>())
+    private val searchText = savedStateHandle.getStateFlow(SEARCH_TEXT, "")
+    private val isSearchActive = savedStateHandle.getStateFlow(IS_SEARCH_ACTIVE, false)
 
     val state = combine(notes, searchText, isSearchActive) { notes, searchText, isSearchActive ->
         NoteListState(
@@ -34,36 +33,20 @@ class NoteListViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteListState())
 
-    init {
-        viewModelScope.launch {
-            (1..10).forEach {
-                noteDataSource.insertNote(
-                    Note(
-                        title = "Note $it",
-                        content = "Content $it",
-                        colorHex = Note.randomColor(),
-                        created = DateTimeUtil.now(),
-                        ),
-                )
-            }
-
-        }
-    }
-
     fun loadNotes() {
         viewModelScope.launch {
-            savedStateHandle["notes"] = noteDataSource.getAllNotes()
+            savedStateHandle[NOTES] = noteDataSource.getAllNotes()
         }
     }
 
     fun onSearchTextChanged(text: String) {
-        savedStateHandle["searchText"] = text
+        savedStateHandle[SEARCH_TEXT] = text
     }
 
     fun onToggleSearch() {
-        savedStateHandle["isSearchActive"] = !isSearchActive.value
+        savedStateHandle[IS_SEARCH_ACTIVE] = !isSearchActive.value
         if (!isSearchActive.value) {
-            savedStateHandle["searchText"] = ""
+            savedStateHandle[SEARCH_TEXT] = ""
         }
     }
 

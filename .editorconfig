@@ -52,7 +52,7 @@ ij_kotlin_method_parameters_right_paren_on_new_line = true
 ij_kotlin_continuation_indent_in_parameter_lists = false
 # Function call arguments
 ij_kotlin_call_parameters_wrap = on_every_item
-ij_kotlin_align_multiline_parameters_in_calls = false
+ij_kotlin_align_multiline_parameters_in_calls = true
 ij_kotlin_call_parameters_new_line_after_left_paren = true
 ij_kotlin_call_parameters_right_paren_on_new_line = true
 ij_kotlin_continuation_indent_in_argument_lists = false

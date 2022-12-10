@@ -24,6 +24,4 @@ object AppModule {
     @Singleton
     fun provideNoteDataSource(driver: SqlDriver): NoteDataSource =
         SqlDelightNoteDataSource(NoteDatabase(driver))
-
-
 }
