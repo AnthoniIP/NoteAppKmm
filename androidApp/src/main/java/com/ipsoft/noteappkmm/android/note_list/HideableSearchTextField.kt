@@ -41,28 +41,30 @@ fun HideableSearchTextField(
                     .padding(16.dp)
                     .padding(end = 40.dp)
             )
-
         }
-        AnimatedVisibility(visible = isSearchActive,
+        AnimatedVisibility(
+            visible = isSearchActive,
             enter = fadeIn(),
             exit = fadeOut(),
             modifier = Modifier.align(
-                Alignment.CenterEnd)) {
+                Alignment.CenterEnd
+            )
+        ) {
             IconButton(onClick = onCloseClick) {
                 Icon(imageVector = Icons.Default.Close, contentDescription = "Close search")
             }
-
         }
-        AnimatedVisibility(visible = isSearchActive,
+        AnimatedVisibility(
+            visible = isSearchActive,
             enter = fadeIn(),
             exit = fadeOut(),
             modifier = Modifier.align(
-                Alignment.CenterEnd)) {
+                Alignment.CenterEnd
+            )
+        ) {
             IconButton(onClick = onCloseClick) {
                 Icon(imageVector = Icons.Default.Search, contentDescription = "Search note")
             }
-
         }
     }
-
 }

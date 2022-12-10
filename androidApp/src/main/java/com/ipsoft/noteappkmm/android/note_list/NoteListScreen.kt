@@ -38,32 +38,41 @@ fun NoteListScreen(
     }
 
     Scaffold(floatingActionButton = {
-        FloatingActionButton(onClick = {},
-                             backgroundColor = Color.Black) {
-
+        FloatingActionButton(
+            onClick = {},
+            backgroundColor = Color.Black
+        ) {
         }
     }) { padding ->
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(padding)) {
-
-            Box(modifier = Modifier
+        Column(
+            modifier = Modifier
                 .fillMaxSize()
-                .padding(padding), contentAlignment = Alignment.Center) {
-                HideableSearchTextField(text = state.searchText,
-                                        isSearchActive = state.isSearchActive,
-                                        onTextChanged = viewModel::onSearchTextChanged,
-                                        onSearchClick = { viewModel.onToggleSearch() },
-                                        onCloseClick = { viewModel.onToggleSearch() },
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(90.dp))
-                this@Column.AnimatedVisibility(visible = state.isSearchActive,
-                                               enter = fadeIn(),
-                                               exit = fadeOut()) {
+                .padding(padding)
+        ) {
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                HideableSearchTextField(
+                    text = state.searchText,
+                    isSearchActive = state.isSearchActive,
+                    onTextChanged = viewModel::onSearchTextChanged,
+                    onSearchClick = { viewModel.onToggleSearch() },
+                    onCloseClick = { viewModel.onToggleSearch() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(90.dp)
+                )
+                this@Column.AnimatedVisibility(
+                    visible = state.isSearchActive,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
                     Text(text = "All notes", fontWeight = FontWeight.Bold)
                 }
-
             }
             LazyColumn(
                 modifier = Modifier.weight(1f),
@@ -73,7 +82,6 @@ fun NoteListScreen(
                         note = note,
                         backgroundColor = Color(note.colorHex),
                         onNoteClick = {
-
                         },
                         onDeleteClick = { viewModel.deleteNoteById(note.id!!) },
                         modifier = Modifier

@@ -36,28 +36,32 @@ fun NoteItem(
 ) {
     val formattedDate = remember(note.created) {
         DateTimeUtil.formatNoteDate(note.created)
-
     }
-    Column(modifier = modifier
-        .clip(RoundedCornerShape(5.dp))
-        .background(backgroundColor)
-        .clickable { onNoteClick() }) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(5.dp))
+            .background(backgroundColor)
+            .clickable { onNoteClick() }
+    ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(text = note.title,
+            Text(
+                text = note.title,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp)
-            Icon(imageVector = Icons.Default.Close,
+                fontSize = 20.sp
+            )
+            Icon(
+                imageVector = Icons.Default.Close,
                 contentDescription = "Delete note",
-                modifier = Modifier.clickable(MutableInteractionSource(), null) { onDeleteClick() })
+                modifier = Modifier.clickable(MutableInteractionSource(), null) { onDeleteClick() }
+            )
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = note.content, fontWeight = FontWeight.Light)
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = formattedDate, color = Color.DarkGray, modifier = Modifier.align(Alignment.End))
     }
-
 }

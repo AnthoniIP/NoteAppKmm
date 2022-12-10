@@ -7,11 +7,11 @@ import com.ipsoft.noteappkmm.data.note.SearchNotes
 import com.ipsoft.noteappkmm.domain.note.Note
 import com.ipsoft.noteappkmm.domain.note.NoteDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
@@ -32,7 +32,6 @@ class NoteListViewModel @Inject constructor(
             isSearchActive = isSearchActive,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteListState())
-
 
     fun loadNotes() {
         viewModelScope.launch {
@@ -57,5 +56,4 @@ class NoteListViewModel @Inject constructor(
             loadNotes()
         }
     }
-
 }
