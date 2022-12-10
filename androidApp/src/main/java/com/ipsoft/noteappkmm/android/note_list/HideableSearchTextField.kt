@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 fun HideableSearchTextField(
     text: String,
     isSearchActive: Boolean,
-    onTextChanged: (String) -> Unit,
+    onTextChange: (String) -> Unit,
     onSearchClick: () -> Unit,
     onCloseClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -32,14 +32,15 @@ fun HideableSearchTextField(
     Box(modifier = modifier) {
         AnimatedVisibility(visible = isSearchActive, enter = fadeIn(), exit = fadeOut()) {
             OutlinedTextField(
+                singleLine = true,
                 value = text,
-                onValueChange = onTextChanged,
+                onValueChange = onTextChange,
                 shape = RoundedCornerShape(50.dp),
                 placeholder = { Text(text = "Search") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .padding(end = 40.dp)
+                    .padding(end = 40.dp),
             )
         }
         AnimatedVisibility(
@@ -47,20 +48,20 @@ fun HideableSearchTextField(
             enter = fadeIn(),
             exit = fadeOut(),
             modifier = Modifier.align(
-                Alignment.CenterEnd
-            )
+                Alignment.CenterEnd,
+            ),
         ) {
             IconButton(onClick = onCloseClick) {
                 Icon(imageVector = Icons.Default.Close, contentDescription = "Close search")
             }
         }
         AnimatedVisibility(
-            visible = isSearchActive,
+            visible = !isSearchActive,
             enter = fadeIn(),
             exit = fadeOut(),
             modifier = Modifier.align(
-                Alignment.CenterEnd
-            )
+                Alignment.CenterEnd,
+            ),
         ) {
             IconButton(onClick = onCloseClick) {
                 Icon(imageVector = Icons.Default.Search, contentDescription = "Search note")
